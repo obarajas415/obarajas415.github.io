@@ -1,31 +1,62 @@
-Future Imperfect by HTML5 UP
-html5up.net | @ajlkn
-Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 
+# Hi there, I'm Oscar Barajas 👋
 
-It's been a long time coming, but I've finally gotten around to creating a brand new
-blog-style template (and the first since Striped, which came out waaaaay back in 2013).
-Anyway, Future Imperfect features a clean, expansive layout, a toggleable search box,
-and -- because pretty much all modern browsers can use it now -- a whole lot of flexbox
-action. Enjoy it :)
+Welcome to my GitHub profile! I'm a passionate Electrical and Computer Engineer with a strong background in embedded systems, hardware validation, and brain-computer interface development. My work is driven by curiosity and a love for solving real-world problems with innovative technology. My GitHub showcases a wide array of projects—from STM32-based oscilloscopes to EEG-controlled robotic systems and VLSI design.
 
-Demo images* courtesy of Unsplash, a radtastic collection of CC0 (public domain) images
-you can use for pretty much whatever.
+## 🔍 About Me
 
-(* = not included)
+- **Location:** San Francisco, California  
+- **Email:** obarajas415@gmail.com  
+- **LinkedIn:** [linkedin.com/in/oscarbarajas415](https://linkedin.com/in/oscarbarajas415)  
+- **Portfolio:** [obarajas415.github.io](https://obarajas415.github.io)  
+- **Education:** M.S. in Electrical & Computer Engineering, San Francisco State University (Expected Fall 2025)  
 
-AJ
-aj@lkn.io | @ajlkn
+## 🛠️ Skills
 
+**Technical Skills:**
 
-Credits:
+- **Programming:** Python, C, MATLAB, Verilog, HTML/CSS  
+- **Embedded Systems:** STM32, OpenMV, FreeRTOS, Arduino, Mbed  
+- **Signal Processing & BCI:** EEG (Emotiv), Feature Extraction, Classification  
+- **Hardware Design:** VLSI, CMOS, Synopsys Tools, SRAM Design  
+- **Web & AI Tools:** Flask, TensorFlow, YOLOv5, LangChain, OpenAI API  
+- **Tools & Platforms:** Git, Linux, Jupyter, Oscilloscopes, Logic Analyzers  
 
-	Demo Images:
-		Unsplash (unsplash.com)
+**Soft Skills:**
 
-	Icons:
-		Font Awesome (fontawesome.io)
+- Problem-Solving  
+- Technical Writing  
+- Team Collaboration  
+- Rapid Prototyping  
+- Field Testing & Debugging  
 
-	Other:
-		jQuery (jquery.com)
-		Responsive Tools (github.com/ajlkn/responsive-tools)
+## 🌟 Experience
+
+**Field Engineer – Siemens Mobility**  
+*2022 – Present*  
+- Perform diagnostics and fault analysis on rail systems (MVB communication, braking logic, and accelerometers).  
+- Lead system validation, test report generation, and root cause investigations.  
+- Collaborate with design engineers and field teams to resolve warranty and performance issues.  
+
+**Graduate Researcher – Brain-Computer Interface Projects**  
+*2024 – Present*  
+- Developed a thought-controlled robotic arm using Emotiv Insight EEG and machine learning.  
+- Applied signal classification and embedded firmware to control robotic actuators in real time.  
+
+## 🚀 Projects
+
+- **STM32-Based Oscilloscope:** Displays analog waveforms on TFT, integrates ADC/DAC and real-time FreeRTOS scheduling.  
+- **EEG RC Car:** Mind-controlled RC car using Emotiv Insight, OpenMV camera vision, and real-time signal classification.  
+- **Analog Gauge Reader with Computer Vision:** Built OpenMV-based system to read industrial dials for smart diagnostics.  
+- **VLSI SRAM Design:** Designed and simulated 16×8 SRAM with optimal SNM, delay balancing, and precharge efficiency using Synopsys.  
+- **Rome Army Builder (Roblox):** A real-time strategy game prototype themed on historical warfare—codebase in progress.  
+
+## 🏆 Honors & Involvements
+
+- Invited to present BCI work at graduate tech expo.  
+- Collaborated with multi-disciplinary teams on urban transit reliability improvements.  
+- Lead developer for AI-powered typewriter concept featured in academic showcase.  
+
+---
+
+Feel free to explore my repositories and connect with me on [LinkedIn](https://linkedin.com/in/oscarbarajas415) or [email me](mailto:obarajas415@gmail.com). Let’s innovate something great together!
