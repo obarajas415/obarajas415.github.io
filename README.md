@@ -1,7 +1,7 @@
 
 # Hi there, I'm Oscar Barajas 👋
 
-Welcome to my GitHub profile! I'm a passionate Electrical and Computer Engineer with a strong background in embedded systems, hardware validation, and brain-computer interface development. My work is driven by curiosity and a love for solving real-world problems with innovative technology. My GitHub showcases a wide array of projects—from STM32-based oscilloscopes to EEG-controlled robotic systems and VLSI design.
+Welcome to my GitHub profile! I'm a passionate Electrical and Computer Engineer with a strong background in embedded systems, hardware validation, and regression testing. My work is driven by curiosity and a love for solving real-world problems with innovative technology. My GitHub showcases a wide array of projects—from STM32-based oscilloscopes to EEG-controlled robotic systems and VLSI design.
 
 ## 🔍 About Me
 
@@ -32,7 +32,7 @@ Welcome to my GitHub profile! I'm a passionate Electrical and Computer Engineer 
 
 ## 🌟 Experience
 
-**Field Engineer – Siemens Mobility**  
+**Field  Test Engineer – Siemens Mobility**  
 *2022 – Present*  
 - Perform diagnostics and fault analysis on rail systems (MVB communication, braking logic, and accelerometers).  
 - Lead system validation, test report generation, and root cause investigations.  
@@ -52,10 +52,7 @@ Welcome to my GitHub profile! I'm a passionate Electrical and Computer Engineer 
 - **Rome Army Builder (Roblox):** A real-time strategy game prototype themed on historical warfare—codebase in progress.  
 
 ## 🏆 Honors & Involvements
-
-- Invited to present BCI work at graduate tech expo.  
-- Collaborated with multi-disciplinary teams on urban transit reliability improvements.  
-- Lead developer for AI-powered typewriter concept featured in academic showcase.  
+ 
 
 ---
 
