@@ -97,6 +97,67 @@
 
 				<!-- Main -->
 					<div id="main">
+<!-- Post -->
+<article class="post">
+  <header>
+    <div class="title">
+      <h2><a href="#">ASIC Motion Estimator (RTL → GDSII) | Synopsys DC / ICC2 / PrimeTime</a></h2>
+      <p>ENGR 852 Advanced Digital Design • 32/28nm CMOS • 260 MHz target</p>
+    </div>
+  </header>
+
+  <section>
+    <!-- Replace with your best “layout board”, “timing report”, or block diagram image -->
+    <div class="image featured">
+      <span class="image fit">
+        <div class="outlined-image"><img src="ICC2.JPG" alt="ASIC Motion Estimator Overview" /></div>
+      </span>
+    </div>
+
+    <h2>Project Overview</h2>
+    <p style="font-size: 1.5em; font-weight: normal;">
+      Implemented a hardware Motion Estimator for video compression using a block-matching algorithm, processing 16×16 reference blocks within a 31×31 search window at a 260 MHz target frequency. Built a complete ASIC flow from RTL development and VCS verification through synthesis (Design Compiler), physical implementation (ICC2), parasitic extraction (SPEF), and timing sign-off (PrimeTime). Developed Verilog RTL and file-driven testbenches, performed pre- and post-layout static timing analysis, and achieved full functional verification and timing closure in a 32/28 nm CMOS flow, following industry-standard RTL-to-GDSII practices.
+    </p>
+
+    <h2>Key Specs</h2>
+    <p style="font-size: 1.5em; font-weight: normal;">
+      • Reference block: 16×16 (8-bit grayscale) <br/>
+      • Search window: 31×31 (grayscale) <br/>
+      • Clock target: 260 MHz (~3.8 ns) <br/>
+      • Architecture: 16 parallel processing elements (pipelined) <br/>
+      • Outputs: BestDist + motion vectors (X/Y)
+    </p>
+
+    <h2>What I Did</h2>
+    <p style="font-size: 1.5em; font-weight: normal;">
+      • Debugged synthesizable Verilog RTL (controller + PE array + comparator) <br/>
+      • Built Verilog testbench using file-based stimulus ($readmemh) <br/>
+      • Verified worst / partial / perfect match behavior in VCS waveforms <br/>
+      • Ran Design Compiler synthesis: gate-level netlist + timing/power/area reports <br/>
+      • Ran ICC2 physical design: floorplan → placement → CTS → routing <br/>
+      • Extracted parasitics (SPEF) and completed post-layout STA sign-off in PrimeTime (setup & hold)
+    </p>
+
+    <h2>Deliverables</h2>
+    <p style="font-size: 1.5em; font-weight: normal;">
+      RTL + testbench, synthesis scripts/logs, timing reports, layout outputs, parasitic extraction, and post-layout timing sign-off reports.
+    </p>
+
+    <hr />
+
+    <section>
+      <h3>Results & Evidence</h3>
+      <div class="box alt">
+        <div class="row gtr-uniform">
+          <div class="col-6"><span class="image fit"><img src="PowerReport.JPG" alt="Block Diagram" /></span></div>
+          <div class="col-6"><span class="image fit"><img src="Waveform.JPG" alt="VCS Waveform" /></span></div>
+          <div class="col-6"><span class="image fit"><img src="blackbox.JPG" alt="ICC2 Layout" /></span></div>
+          <div class="col-6"><span class="image fit"><img src="PostlayoutTiminganalalysis.JPG" alt="PrimeTime STA" /></span></div>
+        </div>
+      </div>
+    </section>
+  </section>
+</article>
 
 						<!-- Post -->
 							<!-- Post -->
