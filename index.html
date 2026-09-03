@@ -81,6 +81,30 @@
 										</a>
 									</li>
 									<li>
+										<a href="#bci-robot-arm">
+											<h3>EEG Robotic Arm (BCI)</h3>
+											<p>Facial gesture control via Emotiv + Arduino</p>
+										</a>
+									</li>
+									<li>
+										<a href="#fleet-reliability">
+											<h3>Fleet Reliability Engineering</h3>
+											<p>RCA, SPC/Weibull, Python data pipeline</p>
+										</a>
+									</li>
+									<li>
+										<a href="#atcs-validation">
+											<h3>ATCS Validation &amp; NPI</h3>
+											<p>Fault injection and system-level test</p>
+										</a>
+									</li>
+									<li>
+										<a href="#manufacturing-test">
+											<h3>Manufacturing Test &amp; FAT</h3>
+											<p>Test fixtures and factory acceptance</p>
+										</a>
+									</li>
+									<li>
 										<a href="#brake-logic">
 											<h3>Emergency Brake Control Logic</h3>
 											<p>Field fault analysis and timing fix</p>
@@ -297,6 +321,191 @@
 					</article>
 
 							<!-- Post -->
+<!-- Post -->
+<!-- Post -->
+<article class="post" id="bci-robot-arm">
+  <header>
+    <div class="title">
+      <h2><a href="#bci-robot-arm">Facial Gesture Controlled Robotic Arm | EEG Brain-Computer Interface</a></h2>
+      <p>ENGR 845 Human-Machine Interface • Emotiv Insight EEG + Arduino UNO • 3-person team project</p>
+    </div>
+  </header>
+
+  <section>
+    <div class="image featured">
+      <span class="image fit">
+        <div class="outlined-image"><img src="BciRobotArm.JPG" alt="diymore ROT3U 6DOF robotic arm with the two driven servos labeled" /></div>
+      </span>
+    </div>
+
+    <h2>Project Overview</h2>
+    <p style="font-size: 1.5em; font-weight: normal;">
+      A human-machine interface (HMI) that lets a person drive a robotic arm using facial gestures detected by an EEG headset. The system chains together data acquisition, signal interpretation, and control of an external actuator: an <b>Emotiv Insight 5-channel wireless EEG headset</b> streams over Bluetooth to a PC, gestures are classified against a trained profile, and the resulting commands are mapped to <b>Arduino UNO</b> pins that drive the arm's servos over PWM.
+    </p>
+
+    <h2>My Role</h2>
+    <p style="font-size: 1.5em; font-weight: normal;">
+      Team project with Dahlen Lakin and Michael Cabrera. I originated the project concept — using an EEG headset to control a robotic arm through an HMI — and did the initial research to determine which tools could actually make it work. That search turned up <b>HITIBrain</b>, the software that bridges the Emotiv headset to an Arduino board, which was the piece that made the whole integration feasible. I also sourced and acquired the robotic arm, verifying it met the mechanical and functional requirements for EEG-driven control. Michael led the testing phase, sourced the servos against torque and voltage requirements, and led documentation; Dahlen served as primary test subject and handled software licensing.
+    </p>
+
+    <h2>System Architecture</h2>
+    <p style="font-size: 1.5em; font-weight: normal;">
+      • <b>EEG capture</b> — Emotiv Insight, 5 channels, Bluetooth to host PC <br/>
+      • <b>Training</b> — EmotivBCI used to record a neutral baseline plus four gestures: smile, furrow brows, raise brows, clench teeth <br/>
+      • <b>Bridge</b> — HITIBrain selects a trained profile and maps a chosen gesture to a specific Arduino pin <br/>
+      • <b>Control</b> — Arduino UNO interprets commands and distributes PWM signals to the servos <br/>
+      • <b>Actuation</b> — diymore ROT3U 6DOF arm; of its six servos the bottom and middle were driven to produce X/Y motion, each on a 6 V supply for stable torque
+    </p>
+
+    <h2>Results</h2>
+    <p style="font-size: 1.5em; font-weight: normal;">
+      • <b>Median end-to-end response time: 820 ms</b> from gesture to arm motion, over ten timed trials <br/>
+      • <b>More training made classification worse.</b> In EmotivBCI's dissimilarity view, well-separated training clusters are the goal — but each additional training set pulled the clusters closer until they overlapped entirely. We reversed the usual instinct and deliberately trained each gesture a minimal number of times so the classifier could still tell commands apart. <br/>
+      • <b>Hair was the dominant noise source.</b> It sat between scalp and electrode and produced erratic, weak signal acquisition. Once the primary test subject shaved his head, contact quality reached 100% across all sensors and signal quality held at a reliable 86% minimum — a large accuracy gain from a purely mechanical fix. <br/>
+      • <b>Thought commands proved too unreliable to use.</b> They demanded significant effort per command and registered inconsistently, so the final system used facial gestures exclusively.
+    </p>
+
+    <h2>Future Work</h2>
+    <p style="font-size: 1.5em; font-weight: normal;">
+      Drive all six joints including the clasper to complete a real task such as picking up an object or wiping a surface; take direct control of the EEG signal processing rather than relying on the vendor's classifier, to reduce sporadic behavior; and revise the control scheme so a movement can be halted before completion and multiple motors coordinated for more complex actions.
+    </p>
+
+    <hr />
+
+    <section>
+      <h3>Training, Integration &amp; Results</h3>
+      <div class="box alt">
+        <div class="row gtr-uniform">
+          <div class="col-6"><span class="image fit"><div class="outlined-image"><img src="BciFacialTrain.JPG" alt="EmotivBCI facial expression training profile" /></div></span></div>
+          <div class="col-6"><span class="image fit"><div class="outlined-image"><img src="BciHitiBrain.JPG" alt="HITIBrain mapping gestures to Arduino UNO pins" /></div></span></div>
+          <div class="col-6"><span class="image fit"><div class="outlined-image"><img src="BciThoughtTrain.JPG" alt="EmotivBCI thought command training showing cluster dissimilarity" /></div></span></div>
+          <div class="col-6"><span class="image fit"><div class="outlined-image"><img src="BciResponseTime.JPG" alt="Stopwatch showing the 0.82 second median response time" /></div></span></div>
+        </div>
+      </div>
+    </section>
+  </section>
+</article>
+
+<article class="post" id="fleet-reliability">
+  <header>
+    <div class="title">
+      <h2><a href="#fleet-reliability">Fleet Reliability Engineering: Root Cause Analysis and a Python Data Pipeline</a></h2>
+      <p>Reliability Engineer • Siemens Mobility • Jan 2025 – Present</p>
+    </div>
+  </header>
+
+  <section>
+    <p style="font-size: 1.2em; font-weight: normal; font-style: italic; opacity: 0.75;">
+      Customer identity and fleet designation are omitted throughout.
+    </p>
+
+    <h2>Project Overview</h2>
+    <p style="font-size: 1.5em; font-weight: normal;">
+      Reliability engineering for a production fleet of safety-critical vehicles. The work splits into two halves: triaging individual failures down to a definite root cause, and building the data infrastructure that turns thousands of scattered test and failure records into something that predicts the next failure instead of just describing the last one. The second half is what moved the numbers.
+    </p>
+
+    <h2>Root Cause Analysis &amp; Triage</h2>
+    <p style="font-size: 1.5em; font-weight: normal;">
+      Failures on an integrated vehicle arrive without a label. The diagnostic problem is deciding which layer actually broke: <br/>
+      • <b>Wiring and cabling</b> — harness faults, terminations, intermittent continuity <br/>
+      • <b>Firmware and software</b> — version mismatches between subsystems <br/>
+      • <b>Configuration</b> — a correct component set up wrongly for its role <br/>
+      • <b>Component defect</b> — genuine hardware failure <br/>
+      Isolating between these means correlating system logs, sensor data, and hardware/software traces from the same time window, because any one source alone is consistent with several of the four.
+    </p>
+
+    <h2>Data &amp; Statistical Methods</h2>
+    <p style="font-size: 1.5em; font-weight: normal;">
+      • Analyzed fleet test and failure data in <b>Python</b> to surface recurring failure modes across the fleet rather than one vehicle at a time <br/>
+      • Applied <b>SPC</b> to distinguish real process shifts from ordinary variation <br/>
+      • Applied <b>Weibull and MDBF analysis</b> to characterize failure distributions and mean distance between failures <br/>
+      • Converted those findings into data-driven pass/fail criteria that catch component- and assembly-level defects before they escape to the field <br/>
+      • Built an automated <b>Python + Power BI + Snowflake</b> pipeline centralizing fleet test and failure data, automating customer deliverables and giving leadership real-time visibility into failure trends
+    </p>
+
+    <h2>Design-for-Reliability</h2>
+    <p style="font-size: 1.5em; font-weight: normal;">
+      Participated in design reviews during early development, applying <b>DFMEA</b> and <b>FTA</b> to push design-for-reliability and testability decisions upstream, where they are still cheap. Evaluated and executed <b>ECO/ECR</b> hardware changes with vendors and suppliers, expanding verification coverage each time to prevent regression.
+    </p>
+
+    <h2>Result</h2>
+    <p style="font-size: 1.5em; font-weight: normal;">
+      <b>~60% fleet uptime improvement</b> through permanent corrective actions — not workarounds, but changes that removed the failure mode. Customer reporting that had been assembled by hand became an automated pipeline.
+    </p>
+  </section>
+</article>
+
+<!-- Post -->
+<article class="post" id="atcs-validation">
+  <header>
+    <div class="title">
+      <h2><a href="#atcs-validation">Automatic Train Control System: Validation, Fault Injection and NPI</a></h2>
+      <p>Field Test Engineer • Siemens Mobility • Mar 2022 – Jan 2025</p>
+    </div>
+  </header>
+
+  <section>
+    <p style="font-size: 1.2em; font-weight: normal; font-style: italic; opacity: 0.75;">
+      Customer identity and fleet designation are omitted throughout.
+    </p>
+
+    <h2>Project Overview</h2>
+    <p style="font-size: 1.5em; font-weight: normal;">
+      System-level validation of an <b>Automatic Train Control System (ATCS)</b> across the traction, braking, and train control subsystems, carried from prototype builds through qualification and verification into stable sustaining test. On a safety-critical platform, proving that a function works is only half the requirement — the other half is proving the system detects and responds correctly when that function fails.
+    </p>
+
+    <h2>Test Development</h2>
+    <p style="font-size: 1.5em; font-weight: normal;">
+      • Designed, built, and optimized test sequences and custom <b>automated test setups</b> for integrated vehicle systems <br/>
+      • Covered the full arc: development, qualification, verification, and validation <br/>
+      • Ran <b>fault-injection campaigns</b> that deliberately induced failures to verify fault-detection logic and closed-loop system response, rather than waiting for faults to appear on their own <br/>
+      • Executed both <b>static and dynamic</b> system-level testing, so behavior was confirmed at rest and in motion
+    </p>
+
+    <h2>New Product Introduction</h2>
+    <p style="font-size: 1.5em; font-weight: normal;">
+      Supported <b>NPI</b> of prototype vehicle systems, working alongside hardware and software engineering during early builds. Early-build testing is a different problem from sustaining test: the design is still moving, so the test approach has to distinguish a genuine defect from a subsystem that simply is not finished yet. Transitioned products from that state into stable sustaining test.
+    </p>
+
+    <h2>Coverage &amp; Documentation</h2>
+    <p style="font-size: 1.5em; font-weight: normal;">
+      • Expanded <b>regression coverage</b> and closed test gaps across software releases, reducing test escapes into production and field operation <br/>
+      • Authored <b>test plans, test procedures, and SOPs</b> used day to day by test technicians on the floor <br/>
+      • Designed new <b>fault declarations</b> that improved diagnostic coverage and system responsiveness — so that when a fault did occur, the logged diagnostic pointed at the actual cause
+    </p>
+  </section>
+</article>
+
+<!-- Post -->
+<article class="post" id="manufacturing-test">
+  <header>
+    <div class="title">
+      <h2><a href="#manufacturing-test">Manufacturing Test Fixtures and Factory Acceptance Testing</a></h2>
+      <p>Engineering Technician III • Siemens Mobility • Jan 2016 – Mar 2022</p>
+    </div>
+  </header>
+
+  <section>
+    <h2>Project Overview</h2>
+    <p style="font-size: 1.5em; font-weight: normal;">
+      Six years on the production floor building and maintaining the test infrastructure that vehicle subsystems are verified against. When a test station goes down, the line stops — so the reliability of the test equipment matters as much as the reliability of the product it measures.
+    </p>
+
+    <h2>What I Did</h2>
+    <p style="font-size: 1.5em; font-weight: normal;">
+      • Assembled, validated, and troubleshot <b>manufacturing test fixtures and stations</b> used for subsystem verification and <b>factory acceptance testing</b>, keeping test systems stable and available on the production floor <br/>
+      • Provided hands-on troubleshooting and repair support alongside manufacturing test technicians <br/>
+      • Performed advanced <b>electrical diagnostics</b> on complex assemblies, wiring harnesses, and instrumentation using schematics, wiring diagrams, and continuity / point-to-point testing <br/>
+      • Supported prototype builds and customer change orders, feeding early validation results and manufacturing feedback back to engineering
+    </p>
+
+    <h2>Why It Matters</h2>
+    <p style="font-size: 1.5em; font-weight: normal;">
+      This is where the diagnostic instinct came from. Reading a schematic and reasoning to a fault with a multimeter and a continuity tester is the same skill later applied to fleet-level triage — only the scale changed.
+    </p>
+  </section>
+</article>
+
 <article class="post" id="brake-logic">
 	<header>
 		<div class="title">
@@ -1109,20 +1318,15 @@ endmodule
 							<section class="blurb">
 								<h2>About Me</h2>
 								<p class="about-text">
-								  <strong>Hello, I’m Oscar Barajas</strong> — a versatile and detail-oriented Test Engineer with a strong specialization in software regression testing, system validation, and static testing for embedded and electromechanical systems. Experienced in developing and executing rigorous test plans to ensure reliability, safety, and performance of mission-critical control systems. Proven ability to identify, isolate, and resolve complex issues across hardware and software layers in real-world environments.
-Currently supporting large-scale transportation systems at Siemens Mobility, where I lead testing efforts across vehicle control, braking, and network systems. Skilled in debugging embedded firmware, analyzing system behavior, and validating integration across microcontrollers, sensors, and communication protocols. Passionate about building robust, fault-tolerant 
-systems through methodical test coverage, data-driven insights, and continuous improvement.
+								  <strong>Hello, I’m Oscar Barajas</strong> — a Reliability Engineer with 10 years of hands-on experience spanning manufacturing test, system-level validation, and fleet reliability for safety-critical vehicle platforms. I drive root cause analysis and complex triage across a production vehicle fleet, isolating whether failures come from wiring and cabling, firmware and software mismatches, configuration, or component defects.
 								</p>
 								<p class="about-text">
-									I am currently pursuing my <strong>Master of Science in Electrical and Computer Engineering</strong> 
-									at <strong>San Francisco State University</strong>, where I have worked on 
-									<span class="highlight">VLSI design, hardware validation, electrical circuit design, and embedded software development</span>.
+									At <strong>Siemens Mobility</strong> I build <span class="highlight">Python-based data pipelines (Power BI, Snowflake)</span> for failure-trend and yield-style analysis, and apply <span class="highlight">SPC, Weibull and MDBF analysis, DFMEA and FTA</span> to catch component- and assembly-level issues before they escape to the field. My background also covers factory acceptance testing, production test fixtures, automated test development, NPI, and floor technician support.
 								</p>
 								<p class="about-text">
-									As a <strong>Field Test Engineer at Siemens Mobility</strong>, I specialize in 
-									<span class="highlight">hardware troubleshooting, system validation,software regression testing, static testing and fault diagnosis</span> 
-									for railway control systems, ensuring high reliability and efficiency in critical transportation infrastructure. 
-									
+									I hold an <strong>M.S. in Engineering — Electrical and Computer Engineering</strong> from <strong>San Francisco State University</strong>, where my applied project took a
+									<span class="highlight">5-stage pipelined RISC-V processor from RTL to GDSII in 14-nm CMOS</span>. My academic work spans
+									<span class="highlight">VLSI and ASIC design, hardware validation, circuit design, and embedded software</span>.
 								</p>
 								<ul class="actions">
 							
@@ -1134,7 +1338,7 @@ systems through methodical test coverage, data-driven insights, and continuous i
 							<section id="contact" class="blurb">
 								<h2>Contact</h2>
 								<p class="about-text">
-									Open to opportunities in ASIC/VLSI design, hardware validation and embedded systems.
+									Open to opportunities in reliability engineering, manufacturing and system test, hardware validation, and ASIC/VLSI design.
 								</p>
 								<ul class="actions stacked">
 									<li><a href="mailto:obarajas415@gmail.com" class="button fit">Email Me</a></li>
@@ -1153,7 +1357,7 @@ systems through methodical test coverage, data-driven insights, and continuous i
 										<header>
 											<h3 class="full-width">Bachelor of Science in Electrical Engineering</h3>
 											<h4>San Francisco State University</h4>
-											<p>Spring 2017 - Fall 2021</p>
+											<p>December 2023</p>
 										</header>
 										<div class="image"><img src="sfsulogo.JPG" alt="SFSU Logo" /></div>
 									</article>
@@ -1163,9 +1367,9 @@ systems through methodical test coverage, data-driven insights, and continuous i
 									<!-- Mini Post -->
 									<article class="mini-post">
 										<header>
-											<h3 class="full-width">Master of Science in Electrical and Computer Engineering</h3>
+											<h3 class="full-width">M.S. in Engineering — Electrical and Computer Engineering</h3>
 											<h4>San Francisco State University</h4>
-											<p>Spring 2023 - Spring 2026</p>
+											<p>December 2025</p>
 										</header>
 										<div class="image"><img src="sfsulogo.JPG" alt="SFSU Logo" /></div>
 									</article>
@@ -1175,6 +1379,14 @@ systems through methodical test coverage, data-driven insights, and continuous i
 										<header>
 											<h3 class="full-width">Engineer in Training (EIT) Certification</h3>
 											<h4>NCEES</h4>
+										</header>
+									</article>
+
+									<!-- Mini Post -->
+									<article class="mini-post">
+										<header>
+											<h3 class="full-width">Professional Engineer (PE)</h3>
+											<h4>In progress — expected 2026</h4>
 										</header>
 									</article>
 
