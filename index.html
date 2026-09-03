@@ -9,6 +9,7 @@
 		<title>Oscar Barajas Portfolio</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Oscar Barajas — Electrical and Computer Engineer. ASIC design (RTL-to-GDSII), VLSI, hardware validation and embedded systems. M.S. ECE, San Francisco State University." />
 		<link rel="stylesheet" href="main.css" />
 		<style>
 			.image.fit img {
@@ -28,7 +29,9 @@
 						<h1><a href="index.html">Oscar Barajas Portfolio</a></h1>
 						<nav class="links">
 							<ul>
-							
+								<li><a href="#main">Projects</a></li>
+								<li><a href="#about">About</a></li>
+								<li><a href="#contact">Contact</a></li>
 							</ul>
 						</nav>
 						<nav class="main">
@@ -60,27 +63,51 @@
 							<section>
 								<ul class="links">
 									<li>
-										<a href="#">
-											<h3>Lorem ipsum</h3>
-											<p>Feugiat tempus veroeros dolor</p>
+										<a href="#riscv">
+											<h3>RISC-V Processor ASIC</h3>
+											<p>RTL-to-GDSII in 14-nm CMOS</p>
 										</a>
 									</li>
 									<li>
-										<a href="#">
-											<h3>Dolor sit amet</h3>
-											<p>Sed vitae justo condimentum</p>
+										<a href="#motion-estimator">
+											<h3>ASIC Motion Estimator</h3>
+											<p>Block matching at 260 MHz</p>
 										</a>
 									</li>
 									<li>
-										<a href="#">
-											<h3>Feugiat veroeros</h3>
-											<p>Phasellus sed ultricies mi congue</p>
+										<a href="#sram">
+											<h3>16x8 SRAM in 14nm</h3>
+											<p>Custom VLSI design and optimization</p>
 										</a>
 									</li>
 									<li>
-										<a href="#">
-											<h3>Etiam sed consequat</h3>
-											<p>Porta lectus amet ultricies</p>
+										<a href="#brake-logic">
+											<h3>Emergency Brake Control Logic</h3>
+											<p>Field fault analysis and timing fix</p>
+										</a>
+									</li>
+									<li>
+										<a href="#door-faults">
+											<h3>Door Control Fault Resolution</h3>
+											<p>Software solution replacing a hardware change</p>
+										</a>
+									</li>
+									<li>
+										<a href="#uart-sta">
+											<h3>FPGA UART Timing Analysis</h3>
+											<p>STA on Zynq-7000 SoC</p>
+										</a>
+									</li>
+									<li>
+										<a href="#sensor-fusion">
+											<h3>Sensor Fusion: Heat Tracking</h3>
+											<p>Tiva MCU, I2C / SPI / UART in C</p>
+										</a>
+									</li>
+									<li>
+										<a href="#environment-control">
+											<h3>Environmental Control System</h3>
+											<p>Embedded IoT monitoring and control</p>
 										</a>
 									</li>
 								</ul>
@@ -89,7 +116,7 @@
 						<!-- Actions -->
 							<section>
 								<ul class="actions stacked">
-									<li><a href="#" class="button large fit">Log In</a></li>
+									<li><a href="#contact" class="button large fit">Get In Touch</a></li>
 								</ul>
 							</section>
 
@@ -98,7 +125,81 @@
 				<!-- Main -->
 					<div id="main">
 <!-- Post -->
-<article class="post">
+<article class="post" id="riscv">
+  <header>
+    <div class="title">
+      <h2><a href="#">ASIC Implementation of a RISC-V Processor in 14-nm CMOS | Synopsys VCS / DC / ICC2 / PrimeTime</a></h2>
+      <p>M.S. Applied Project (Thesis) • San Francisco State University • Spring 2026 • SAED 14-nm • 200 MHz target</p>
+    </div>
+  </header>
+
+  <section>
+    <div class="image featured">
+      <span class="image fit">
+        <div class="outlined-image"><img src="RiscvLayout.JPG" alt="Fully routed TOP_CPU layout in IC Compiler II" /></div>
+      </span>
+    </div>
+
+    <h2>Project Overview</h2>
+    <p style="font-size: 1.5em; font-weight: normal;">
+      Complete RTL-to-GDSII implementation of a 5-stage pipelined RISC-V CPU in a 14-nm CMOS technology, built entirely with the Synopsys EDA tool suite. RISC-V is an open-source instruction set architecture that allows customization without the licensing and IP constraints of proprietary ISAs such as x86 and ARM — a growing advantage as machine learning and AI workloads push more computation onto application-specific hardware. The design implements Instruction Fetch, Decode, Execute, Memory and Write Back stages with a hazard detection unit and a forwarding unit, and was carried through functional verification, logic synthesis, pre-layout static timing analysis, full physical implementation, and post-layout timing sign-off. This work migrates an earlier 32-nm SFSU implementation to a 14-nm FinFET library and to the IC Compiler II tool flow. Advised by Dr. Hamid Mahmoodi, with Dr. Zhuwei Qin on the defense committee.
+    </p>
+
+    <h2>Key Specs</h2>
+    <p style="font-size: 1.5em; font-weight: normal;">
+      • ISA: RISC-V, 32-bit instructions, 32 general-purpose registers <br/>
+      • Instruction formats: R, I, S, B and J, decoded from 8 custom 7-bit opcodes <br/>
+      • Pipeline: 5 stages (IF / ID / EX / MEM / WB) with IFID, IDEX, EXMEM and MEMWB registers <br/>
+      • Hazard handling: load-use hazard detection with pipeline stall, plus EX/MEM and MEM/WB forwarding <br/>
+      • Clock target: 5 ns period (200 MHz) <br/>
+      • Technology: Synopsys SAED 14-nm EDK (SLVT / LVT / RVT / HVT cells) at 0.88 V, 125 °C <br/>
+      • Data memory: 4096-entry × 32-bit array
+    </p>
+
+    <h2>What I Did</h2>
+    <p style="font-size: 1.5em; font-weight: normal;">
+      • Developed synthesizable Verilog RTL for the datapath, control unit, ALU, comparator, register file, forwarding unit and hazard detection unit <br/>
+      • Verified the design in Synopsys VCS and debugged cycle-by-cycle pipeline behavior in Verdi, exercising R-type, I-type, branch, jump, load and store instructions <br/>
+      • Synthesized to a gate-level netlist in Design Compiler against the SAED 14-nm library with a 5 ns ideal-clock constraint <br/>
+      • Ran independent pre-layout sign-off STA in PrimeTime and generated timing, power and area reports <br/>
+      • Completed the full ICC2 physical flow: design loading, floorplanning, PG ring and power network, placement, clock tree synthesis, and detail routing with post-route optimization <br/>
+      • Performed post-layout STA on the extracted netlist to confirm setup and hold closure with real parasitics and a propagated clock tree
+    </p>
+
+    <h2>Results</h2>
+    <p style="font-size: 1.5em; font-weight: normal;">
+      • Pre-layout setup slack: <b>+3.88 ns MET</b> (1.11 ns arrival vs. 4.99 ns required) — 78% margin at the 5 ns target <br/>
+      • Post-layout setup slack: <b>+2.83 ns MET</b> after placement, CTS, routing and parasitics <br/>
+      • Post-layout hold slack: <b>+0.02 ns MET</b> — no hold violations <br/>
+      • Area: 9,803.48 total cell area (4,659.03 combinational, 5,144.45 non-combinational), 28,226.24 total area <br/>
+      • Gate count: 20,943 cells (15,356 combinational, 5,520 sequential, 3,543 buf/inv) across 24,732 nets <br/>
+      • Power: 1.2118 mW total dynamic (1.1688 mW cell internal, 43.01 µW net switching) <br/>
+      • Zero timing violations at every sign-off point, with headroom left for further frequency scaling
+    </p>
+
+    <h2>Deliverables</h2>
+    <p style="font-size: 1.5em; font-weight: normal;">
+      Verilog RTL and testbench, VCS/Verdi verification results, Design Compiler synthesis scripts and gate-level netlist, PrimeTime pre- and post-layout timing reports, power and area reports, and the complete ICC2 physical implementation database (TOP_CPU_placed, TOP_CPU_cts, TOP_CPU_routed).
+    </p>
+
+    <hr />
+
+    <section>
+      <h3>Results &amp; Evidence</h3>
+      <div class="box alt">
+        <div class="row gtr-uniform">
+          <div class="col-6"><span class="image fit"><div class="outlined-image"><img src="RiscvTopCPU.JPG" alt="Block-level view of the TOP_CPU module" /></div></span></div>
+          <div class="col-6"><span class="image fit"><div class="outlined-image"><img src="RiscvWaveform.JPG" alt="Verdi waveform showing pipeline signal activity" /></div></span></div>
+          <div class="col-6"><span class="image fit"><div class="outlined-image"><img src="RiscvClockTree.JPG" alt="Routed layout with ALU and Data Memory blocks highlighted" /></div></span></div>
+          <div class="col-6"><span class="image fit"><div class="outlined-image"><img src="RiscvSlack.JPG" alt="PrimeTime path slack histogram" /></div></span></div>
+        </div>
+      </div>
+    </section>
+  </section>
+</article>
+
+<!-- Post -->
+<article class="post" id="motion-estimator">
   <header>
     <div class="title">
       <h2><a href="#">ASIC Motion Estimator (RTL → GDSII) | Synopsys DC / ICC2 / PrimeTime</a></h2>
@@ -161,16 +262,16 @@
 
 						<!-- Post -->
 							<!-- Post -->
-						<article class="post">
+						<article class="post" id="sram">
 							<header>
 								<div class="title">
 									<h2><a href="#"> VLSI Design and Optimization of a 16X8 SRAM in 14nm CMOS Technology   </a></h2>
-									<h2><p href=""> Designed a 16×8 SRAM in 14nm CMOS technology using Synopsys EDA tools, adhering to strict design constraints  </p></h2>
+									<p>Designed a 16×8 SRAM in 14nm CMOS technology using Synopsys EDA tools, adhering to strict design constraints</p>
 								</div>
 							</header>
 							<section>
 		
-								<div class="image featured"><span class="image fit"><div class="outlined-image"><img src="sram5.JPG" alt="" /></div></span></div>
+								<div class="image featured"><span class="image fit"><div class="outlined-image"><img src="sram5.JPG" alt="16x8 SRAM layout in 14nm CMOS" /></div></span></div>
 								<h2>Project Overview:</h2> 
 								<p style="font-size: 1.5em; font-weight: normal;">
 									Designed a 16×8 SRAM in 14nm CMOS technology using Synopsys EDA tools, adhering to strict design constraints including a 4-bit address bus, 8-bit input/output data buses, and operational requirements at 0.8V and 110°C. Ensured a minimum read SNM of 150mV, a bit-line differential of 100mV in read mode, and a maximum standby power of 100µW. Focused on optimizing chip area, access time, and power efficiency.
@@ -179,173 +280,131 @@
 								<hr />
 								
 								<section>
-									<h3>Architecture Layout</h3>
-									<h4>Fit</h4>
+									<h3>Architecture &amp; Layout</h3>
 									<div class="box alt">
 										<div class="row gtr-uniform">
-											<div class="col-6"><span class="image fit"><div class="outlined-image"><img src="sram10.JPG" alt="" /></div></span></div>
-											<div class="col-6"><span class="image fit"><div class="outlined-image"><img src="sram3.JPG" alt="" /></div></span></div>
-											<div class="col-6"><span class="image fit"><div class="outlined-image"><img src="sram6.JPG" alt="" /></div></span></div>
-											<div class="col-6"><span class="image fit"><div class="outlined-image"><img src="sram8.JPG" alt="" /></div></span></div>
+											<div class="col-6"><span class="image fit"><div class="outlined-image"><img src="sram10.JPG" alt="SRAM array architecture" /></div></span></div>
+											<div class="col-6"><span class="image fit"><div class="outlined-image"><img src="sram3.JPG" alt="SRAM bitcell layout" /></div></span></div>
+											<div class="col-6"><span class="image fit"><div class="outlined-image"><img src="sram6.JPG" alt="SRAM read/write timing" /></div></span></div>
+											<div class="col-6"><span class="image fit"><div class="outlined-image"><img src="sram8.JPG" alt="SRAM simulation results" /></div></span></div>
 											
 										</div>
 									</div>
 								</section>
 					
+												</section>
+
 					</article>
 
 							<!-- Post -->
-<article class="post">
+<article class="post" id="brake-logic">
 	<header>
 		<div class="title">
-			<h2><a> Siemens Field Engineer: Emergency Brake Control Logic Optimization and Fault Analysis </a></h2>
-			<h2><p href=""> As Siemens Field Engineer Worked on Enhancing PBEB Signal Timing Logic and Reliability Testing for Siemens LRV44 </p></h2>
-			
+			<h2><a href="#brake-logic">Field Engineering: Emergency Brake Control Logic Optimization and Fault Analysis</a></h2>
+			<p>Signal timing logic and reliability testing for a light rail vehicle platform</p>
 		</div>
-		
-			
-		
 	</header>
 
 	<section>
-		
-		<div class="image featured"><span class="image fit"><div class="outlined-image"><img src="pbeb1.JPG" alt="" /></div></span></div>
-		<h2>Project Overview:</h2> 
-		<p style="font-size: 1.5em; font-weight: normal;">
-			Collaborated with a cross-functional team to identify and resolve recurring DM_377 faults within Siemens LRV4 control systems. Conducted comprehensive field tests and analyzed fault data to isolate conditions triggering PBEB (Panic Brake Emergency Button) inconsistencies, particularly in Auto mode. Recommended and validated software adjustments, including delay mechanisms, to prevent nuisance faults while ensuring accurate emergency brake function. Coordinated testing schedules and supported live troubleshooting to enhance system reliability, reducing fault incidents by over 50% through optimized PBEB control logic
-		</p>
-	
-	
-		<h2>Issue Background and Fault Diagnosis:</h2> 
-		<p style="font-size: 1.5em; font-weight: normal;">
-			The DM_377 fault is triggered under specific conditions involving the PBEB button, notably when it’s released slowly, causing an inconsistency between contacts that interrupts the T/L (trainline). Faults occur due to a delay in signal consistency, where a slow reset of the PBEB doesn’t align with the system’s 1-second monitoring window, especially in Auto mode. This can be attributed to either the slow release of the PBEB by operators or mechanical issues like stickiness or misalignment in PBEB components.
+
+		<div class="image featured"><span class="image fit"><div class="outlined-image"><img src="estop-button.JPG" alt="Emergency brake pushbutton assembly" /></div></span></div>
+
+		<p style="font-size: 1.2em; font-weight: normal; font-style: italic; opacity: 0.75;">
+			Customer identity, fleet designation, internal fault codes and exact timing parameters are omitted from this write-up.
 		</p>
 
+		<h2>Project Overview:</h2>
+		<p style="font-size: 1.5em; font-weight: normal;">
+			Collaborated with a cross-functional team to identify and resolve a recurring intermittent control fault on a light rail vehicle platform. Conducted field testing and analyzed logged fault data to isolate the operating conditions that produced inconsistent emergency-brake pushbutton signaling, which appeared predominantly in automatic operating mode. Recommended and validated a software timing adjustment that suppressed nuisance faults while preserving correct emergency-brake behavior. Coordinated test scheduling across teams and supported live troubleshooting in service, reducing fault incidents by over 50%.
+		</p>
 
-<h2>Proposed Solutions and Testing Strategy:</h2> 
+		<h2>Issue Background and Fault Diagnosis:</h2>
+		<p style="font-size: 1.5em; font-weight: normal;">
+			The fault was raised when the emergency-brake pushbutton was released slowly, producing a transient disagreement between redundant contacts that briefly interrupted a monitored trainline signal. Because the control logic evaluated contact agreement inside a short fixed monitoring window, a slow reset could fall outside that window and be logged as a fault even though the brake system itself was functioning correctly. Contributing factors included normal variation in how operators released the button, and mechanical wear or misalignment in the pushbutton assembly.
+		</p>
 
-<p style="font-size: 1.5em; font-weight: normal;">
-    To reduce “nuisance faults” in the PBEB signal path, a 3-second DELAYOFF was proposed, effectively extending the delay to around 4 seconds. This accounts for variations in operator intent and potential mechanical inconsistencies, ensuring smoother operation. Initial tests confirmed that delayed release or holding of the PBEB button in Auto mode could trigger the fault, prompting a recommendation to incorporate these timing modifications in new software versions.
-</p>
+		<h2>Proposed Solutions and Testing Strategy:</h2>
+		<p style="font-size: 1.5em; font-weight: normal;">
+			Proposed extending the de-energization delay on the pushbutton signal path so that the monitoring window tolerates ordinary variation in operator release time and minor mechanical inconsistency, without masking a genuine emergency-brake demand. Field testing reproduced the fault deliberately by holding and slow-releasing the button in automatic mode, which confirmed the diagnosis and ruled out a defect in the brake system itself. The timing change was validated in service and recommended for inclusion in a subsequent software release.
+		</p>
 
-
-	
-		
-		
-		<hr />
-		
-		
-
-
-	
-
-			<section>
-				<h3>Image</h3>
-				<h4></h4>
-				<div class="box alt">
-					<div class="row gtr-uniform">
-						<div class="col-6"><span class="image fit"><div class="outlined-image"><img src="PBEB3.JPG" alt="" /></div></span></div>
-						<div class="col-6"><span class="image fit"><div class="outlined-image"><img src="PBEB2.JPG" alt="" /></div></span></div>
-						<div class="col-6"><span class="image fit"><div class="outlined-image"><img src="pbeb4.JPG" alt="" /></div></span></div>
-						<div class="col-6"><span class="image fit"><div class="outlined-image"><img src="pbeb1.JPG" alt="" /></div></span></div>
-						
-					</div>
-				</div>
-			</section>
+	</section>
 
 </article>
 
-						
-<article class="post">
+
+<article class="post" id="door-faults">
 	<header>
 		<div class="title">
-			<h2><a href="">Siemens Field Engineer: LRV4 Hardware Design Door Faults: A Software-Driven Solution
-
-			</a></h2>
-			<p>Software Change Addresses Siemens MUNI LRV4 Hardware Design Change</p>
+			<h2><a href="#door-faults">Field Engineering: Door Control Fault Resolution Through a Software-Driven Solution</a></h2>
+			<p>Replacing a hardware modification with signal-conditioning logic on a light rail vehicle platform</p>
 		</div>
-		
-			
-		
 	</header>
 
 	<section>
-		<a class="image featured"><img src="diode5.JPG" /></a>
+		<div class="image featured"><span class="image fit"><div class="outlined-image"><img src="diode5.JPG" alt="Software solution replacing the hardware change in the door control signal path" /></div></span></div>
+
+		<p style="font-size: 1.2em; font-weight: normal; font-style: italic; opacity: 0.75;">
+			Customer identity, fleet designation and internal fault codes are redacted from this write-up and from the diagrams below.
+		</p>
+
 		<h2>Project Overview:</h2>
 		<p style="font-size: 1.5em; font-weight: normal;">
-			The Siemens MUNI LRV4 train encountered a recurring "nuisance fault" in its door system due to initial hardware design, triggering non-critical alerts. An added diode intended to fix this caused a new functional fault, impacting train operations. Following extensive troubleshooting, a software-based solution was implemented to resolve both faults, eliminating the need for further hardware changes. This approach was not only cost-effective but also enabled a swift resolution.
-		
-	
-		
-		<h2>Project Overview:</h2> 
-		<p style="font-size: 1.5em; font-weight: normal;">
-			The Siemens MUNI LRV4 door system experienced two types of faults due to the initial hardware setup:
-
-1) Nuisance Fault: A diode was added to resolve non-critical alerts, which had no operational impact.
-2)Functional Fault: The diode addition inadvertently created a functional fault, impacting vehicle operation by misinterpreting certain door states.
-Faults were attributed to inconsistencies in signal handling, particularly during specific door disable operations, which differed from expected behavior across various modes.
-		</p>
-	
-	
-		<h2>Issue Background and Fault Diagnosis:</h2> 
-		<p style="font-size: 1.5em; font-weight: normal;">
-			The DM_377 fault is triggered under specific conditions involving the PBEB button, notably when it’s released slowly, causing an inconsistency between contacts that interrupts the T/L (trainline). Faults occur due to a delay in signal consistency, where a slow reset of the PBEB doesn’t align with the system’s 1-second monitoring window, especially in Auto mode. This can be attributed to either the slow release of the PBEB by operators or mechanical issues like stickiness or misalignment in PBEB components.
+			A light rail vehicle fleet exhibited a recurring nuisance fault in its door control system originating in the original hardware design. A hardware modification intended to suppress the nuisance alert introduced a new functional fault that did affect vehicle operation. After extended troubleshooting, both faults were resolved in software, eliminating the need for any further hardware change — a lower-cost fix that could be deployed across the fleet far faster than a physical retrofit.
 		</p>
 
+		<h2>Fault Characterization:</h2>
+		<p style="font-size: 1.5em; font-weight: normal;">
+			The door system exhibited two distinct faults: <br/>
+			• <b>Nuisance fault</b> — a non-critical alert raised by the original door signal path, with no operational impact on the vehicle. <br/>
+			• <b>Functional fault</b> — introduced by the hardware modification, which caused certain door states to be misinterpreted and did affect vehicle operation. <br/>
+			Both were traced to inconsistencies in how door state signals were handled during specific door-disable operations, where observed behavior diverged from what the control logic expected across operating modes.
+		</p>
 
-<h2>Proposed Solutions and Testing Strategy:</h2> 
+		<h2>Issue Background and Fault Diagnosis:</h2>
+		<p style="font-size: 1.5em; font-weight: normal;">
+			Diagnosis isolated the contribution of the added hardware component by comparing door state reporting with and without it across every operating mode. The component altered the signal levels the control logic sampled, so a door-disable operation that was read correctly in one mode was interpreted as an invalid state in another. Bench and in-service testing narrowed the trigger to a specific sequence of door-disable operations rather than a random intermittent failure, which made the fault reproducible on demand and confirmed that the original hardware fix had traded a harmless alert for a functional one.
+		</p>
 
-<p style="font-size: 1.5em; font-weight: normal;">
-	The team identified a software solution to filter out unnecessary alerts, removing the diode and instead implementing signal conditioning logic to differentiate between intentional and erroneous faults.
-	Testing validated that the software solution effectively prevented both nuisance and functional faults without modifying hardware. The strategy included isolating the diode’s influence and adjusting signal paths to ensure accurate door state reporting across all operation modes
-</p>
+		<h2>Proposed Solutions and Testing Strategy:</h2>
+		<p style="font-size: 1.5em; font-weight: normal;">
+			The team identified a software solution that filtered the spurious alert at its source: removing the added hardware component and implementing signal-conditioning logic to distinguish an intentional door-disable operation from an erroneous state. Testing validated that the software approach prevented both the nuisance and the functional fault with no hardware modification, and door state reporting was verified as correct across all operating modes before release.
+		</p>
 
-
-
-	
-		
-		
 		<hr />
-		
-		
 
-
-	
-
-	<section>
-		<h3>Imagee</h3>
-		<h4>Fit</h4>
-		<div class="box alt">
-			<div class="row gtr-uniform">
-				<div class="col-6"><span class="image fit"><img src="diode4.JPG" alt="" /></span></div>
-				<div class="col-6"><span class="image fit"><img src="diode3.JPG" alt="" /></span></div>
-				<div class="col-6"><span class="image fit"><img src="diode1.JPG" alt="" /></span></div>
-				<div class="col-6"><span class="image fit"><img src="diode2.JPG" alt="" /></span></div>
-			
-			
-				 </div>
-		</div>
+		<section>
+			<h3>Fault Analysis Diagrams</h3>
+			<div class="box alt">
+				<div class="row gtr-uniform">
+					<div class="col-6"><span class="image fit"><div class="outlined-image"><img src="diode1.JPG" alt="Baseline door signal path with the cutout switch on and no added component" /></div></span></div>
+					<div class="col-6"><span class="image fit"><div class="outlined-image"><img src="diode4.JPG" alt="Signal path with the added component, showing the functional fault it introduced" /></div></span></div>
+					<div class="col-6"><span class="image fit"><div class="outlined-image"><img src="diode3.JPG" alt="Door state reporting compared across operating modes" /></div></span></div>
+					<div class="col-6"><span class="image fit"><div class="outlined-image"><img src="diode2.JPG" alt="Nuisance fault generation traced through the control path" /></div></span></div>
+				</div>
+			</div>
+		</section>
 	</section>
 
 </article>
 						<!-- Post -->
-						<article class="post">
+						<article class="post" id="uart-sta">
 							<header>
 								<div class="title">
 									<h2><a href="#"> Design Verification: 7-SERIES FPGA UART TIMING ANALYSIS ON ZYNQ SoC   </a></h2>
-									<p>HARDWARE used for implimentation PYNQ-Z2  </p>
+									<p>HARDWARE used for implementation PYNQ-Z2  </p>
 								
 								</div>
 							</header>
 
 							<section>
-								<a href="single.html" class="image featured"><img src="Timing.JPG" alt="" /></a>
+								<span class="image featured"><img src="Timing.JPG" alt="Static timing analysis of the UART design on the Zynq-7000 SoC" /></span>
 								<p style="font-size: 1.5em; font-weight: normal;">
 
 									The primary objective of this project is to design and implement a UART  module on the Zynq-7000 SoC platform, part of the Xilinx 7-Series FPGA family. The project focuses on verifying the design through static timing analysis (STA) to ensure that all critical paths meet the required timing constraints. Both simulation and hardware testing are performed to validate functionality, timing closure, and correct operation in real-world conditions.
 							</p>
 								<hr />
-								<h2>SDC Constraints for UART Timing Analysis</h4>
+								<h2>SDC Constraints for UART Timing Analysis</h2>
 								<pre><code>
 									create_clock -period 20.000 [get_ports clk]  # 50 MHz clock (20 ns period)
 
@@ -364,7 +423,7 @@ Faults were attributed to inconsistencies in signal handling, particularly durin
 							
 
 							<section>
-								<h2>Verilog Code for UART Transmitter</h4>
+								<h2>Verilog Code for UART Transmitter</h2>
 									<pre><code>
 										
     module uart_tx (
@@ -433,16 +492,18 @@ Faults were attributed to inconsistencies in signal handling, particularly durin
     end
 endmodule
 </code></pre>
+								</section>
+							</section>
 </article>
 	
 						<!-- Post -->
 						 
 						
-							<article class="post">
+							<article class="post" id="sensor-fusion">
 								<header>
 									<div class="title">
 										<h2><a href="#">Sensor Fusion:Heat Tracking and Suppression </a></h2>
-										<p>Tiva MCU Board I2C, SPI, UART  Sensor Integration in C <Cap></Cap></p>
+										<p>Tiva MCU Board — I2C, SPI and UART sensor integration in C</p>
 									</div>
 									<div class="meta">
 										
@@ -451,16 +512,16 @@ endmodule
 								
 
 								<section>
-									<a href="single.html" class="image featured"><img src="tiva.JPG" alt="" /></a>
+									<span class="image featured"><img src="tiva.JPG" alt="Tiva MCU sensor fusion build with thermal sensor and fan control" /></span>
 									<h3>Objective:</h3>
 									<p style="font-size: 1.5em; font-weight: normal;">
 										The Heat-Triggered Fan project aims to enhance environmental comfort and energy efficiency through automated, responsive cooling based on ambient temperature readings.
-								
+									</p>
 									<h3>Description:</h3>
 									<p style="font-size: 1.5em; font-weight: normal;">
 
 									This advanced system leverages sensor fusion technology to accurately monitor environmental conditions. Utilizing a combination of sensors communicating over I2C and UART interfaces, the system ensures precise temperature detection. When the ambient temperature exceeds a set threshold, the system activates a fan, efficiently mitigating heat without human intervention.
-									
+									</p>
 									<h3>Sensor Fusion:</h3>
 									<p style="font-size: 1.5em; font-weight: normal;">
 									Employs multiple sensors via I2C and UART protocols for accurate temperature readings and reliable system performance.
@@ -468,7 +529,7 @@ endmodule
 									Energy Efficient: Operates the fan only when necessary, significantly reducing energy use.
 									User-Friendly Interface: Allows users to easily adjust temperature thresholds and fan speeds according to their preferences.
 									Functionality: At the core of the system is a microcontroller unit (MCU) that orchestrates all operations. It processes inputs from digital thermostats connected through I2C and additional sensors interfaced via UART. This dual communication strategy enhances the reliability and accuracy of the temperature readings, forming a solid basis for the activation logic of the fan.
-									
+									</p>
 									<h3>Features</h3>
 									<p style="font-size: 1.5em; font-weight: normal;">
                                     Enhanced Comfort: Automatically keeps indoor environments at a comfortable temperature.
@@ -476,6 +537,7 @@ endmodule
 									Environmentally Friendly: Improves energy efficiency, contributing to a lower carbon footprint.
 									Technical Innovation: Integrates sophisticated sensor and communication technologies to provide a cutting-edge solution to climate control.
 									Applications: This system is particularly suited for residential homes, offices, and industrial settings where maintaining a set temperature efficiently is crucial.
+									</p>
 									<h3>Conclusion:</h3>
 									<p style="font-size: 1.5em; font-weight: normal;">
 									 The Heat-Triggered Fan project represents a significant advancement in smart climate control technologies. By integrating precise sensor fusion with sophisticated MCU management over I2C and UART interfaces, it delivers a highly effective, energy-efficient cooling solution that enhances both comfort and environmental sustainability.</p>
@@ -565,7 +627,8 @@ endmodule
 											SYSCTL->RCGCGPIO |= 0x20;
 											GPIOF->LOCK = 0x4C4F434B;   // unlockGPIOCR register
 											GPIOF->CR = 0x01;
-											GPIOF->DIR |= ((1<DEN |= ((1< THRESH){
+											GPIOF-&gt;DIR |= ((1&lt;&lt;IN_A) | (1&lt;&lt;IN_B));
+											GPIOF-&gt;DEN |= ((1&lt; THRESH){
 													if(fanState != 1){
 														printstring("Temp > THRESH");
 														forward();
@@ -891,23 +954,24 @@ endmodule
 									
 									<div class="box alt">
 										<div class="row gtr-uniform">
-											<div class="col-12"><span class="image fit"><img src="flowchart.JPG" alt="" /></span></div>
-											<div class="col-4"><span class="image fit"><img src="tiva1.JPG" alt="" /></span></div>
-											<div class="col-4"><span class="image fit"><img src="tiva2.JPG" alt="" /></span></div>
-											<div class="col-4"><span class="image fit"><img src="tiva3.JPG" alt="" /></span></div>
+											<div class="col-12"><span class="image fit"><img src="flowchart.JPG" alt="System flowchart for the sensor fusion control loop" /></span></div>
+											<div class="col-4"><span class="image fit"><img src="tiva1.JPG" alt="Tiva board sensor wiring" /></span></div>
+											<div class="col-4"><span class="image fit"><img src="tiva2.JPG" alt="Thermal sensor mounted on servo gimbal" /></span></div>
+											<div class="col-4"><span class="image fit"><img src="tiva3.JPG" alt="Fan actuation under thermal trigger" /></span></div>
 										
 										</div>
 									</div>
 									</section>
 
+															</section>
 							</article>
 						
 
 						<!-- Post -->
-						<article class="post">
+						<article class="post" id="environment-control">
 							<header>
 								<div class="title">
-									<h2><a >Embedded Systems:Enviromental Control System </a></h2>
+									<h2><a >Embedded Systems:Environmental Control System </a></h2>
 									<p>Enclosed Mushroom Eviroment Control System IOT Project</p>
 								</div>
 								
@@ -915,21 +979,22 @@ endmodule
 							</header>
 
 							<section>
-								<a href="single.html" class="image featured"><img src="mushroom1.JPG" alt="" /></a>
+								<span class="image featured"><img src="mushroom1.JPG" alt="Enclosed mushroom cultivation chamber with environmental sensors" /></span>
 								<h3>Project Overview:</h3>
 								<p style="font-size: 1.5em; font-weight: normal;">
 
-									Our aim is to craft a system that not only talks to mushrooms in their language - humidity, temperature, and CO2 - but also listens to them, adjusting their environment to help them thrive. This isn’t just a control system; it's a cultivation companion for gourmet mushroom aficionados on a budget.As inflation rises, so do food prices and the amount of hours worked required to acquire your food. Furthermore, there is less and less space for the production of food in major cities where food demand and waste is highest. With the way that our economy is going it would not be unreasonable to think that we will soon find ourselves in another recession and unable to purchase luxury items like gourmet mushrooms. 
-							<p>
-								<h3>Design & Testing:</h3> 
+									Our aim is to craft a system that not only talks to mushrooms in their language - humidity, temperature, and CO2 - but also listens to them, adjusting their environment to help them thrive. This isn’t just a control system; it's a cultivation companion for gourmet mushroom aficionados on a budget.As inflation rises, so do food prices and the amount of hours worked required to acquire your food. Furthermore, there is less and less space for the production of food in major cities where food demand and waste is highest. With the way that our economy is going it would not be unreasonable to think that we will soon find ourselves in another recession and unable to purchase luxury items like gourmet mushrooms.
+								</p>
+								<h3>Design &amp; Testing:</h3> 
 								
 
-<h2>Hygroscopic Harp (Humidity Sensor):</h2> Sensing percents of water particles vapor in the enclosed system
-<h2>Thermal Flute (Temperature Sensor):</h2>Measuring thetemperature  ensuring the ambient embrace is just right.
-<h2>Carbon and O2 (CO2 & O2 Sensor):</h2> Detecting amount C02 and O2 present in the system
-<h2>Relay Control</h2> Provide control to change enviromental parameters such as trigger hummidifiser to increase humiduty or open vent to increase O2.
-<h2>User Interface LCD Screen</h2> A window allowing user to see and cycle through measured parameters
-							</p>
+<p style="font-size: 1.5em; font-weight: normal;">
+									• <b>Humidity sensor</b> — measures water vapor content inside the enclosed system. <br/>
+									• <b>Temperature sensor</b> — measures ambient temperature to keep the chamber in range. <br/>
+									• <b>CO2 &amp; O2 sensor</b> — detects the amount of CO2 and O2 present in the system. <br/>
+									• <b>Relay control</b> — drives the environmental actuators, triggering the humidifier to raise humidity or opening a vent to raise O2. <br/>
+									• <b>LCD user interface</b> — lets the user cycle through and read each measured parameter.
+								</p>
 								
 								
 								<hr />
@@ -1007,20 +1072,20 @@ endmodule
 							
 
 							<section>
-								<h3>Imagee</h3>
-								<h4>Fit</h4>
+								<h3>Build Photos</h3>
 								<div class="box alt">
 									<div class="row gtr-uniform">
-										<div class="col-6"><span class="image fit"><img src="mushroom2.JPG" alt="" /></span></div>
-										<div class="col-6"><span class="image fit"><img src="mushroom3.JPG" alt="" /></span></div>
-										<div class="col-6"><span class="image fit"><img src="mushroom4.JPG" alt="" /></span></div>
-										<div class="col-6"><span class="image fit"><img src="mushroom5.JPG" alt="" /></span></div>
-										<div class="col-9"><span class="image fit"><img src="mushroom6.JPG" alt="" /></span></div>
+										<div class="col-6"><span class="image fit"><img src="mushroom2.JPG" alt="Environmental control build" /></span></div>
+										<div class="col-6"><span class="image fit"><img src="mushroom3.JPG" alt="Sensor wiring detail" /></span></div>
+										<div class="col-6"><span class="image fit"><img src="mushroom4.JPG" alt="Control enclosure" /></span></div>
+										<div class="col-6"><span class="image fit"><img src="mushroom5.JPG" alt="Chamber interior" /></span></div>
+										<div class="col-9"><span class="image fit"><img src="mushroom6.JPG" alt="Completed cultivation system" /></span></div>
 									
 								 		</div>
 								</div>
 							</section>
 
+													</section>
 						</article>
 
 						<!-- Pagination -->
@@ -1034,7 +1099,7 @@ endmodule
 
 						<!-- Intro -->
 							<section id="intro">
-								<a href="#" class="logo"><img src="logo.JPG" alt="" /></a>
+								<a href="#main" class="logo"><img src="logo.JPG" alt="Oscar Barajas" /></a>
 								<header>
 									<h2>Oscar Barajas</h2>
 								
@@ -1044,7 +1109,7 @@ endmodule
 							<section class="blurb">
 								<h2>About Me</h2>
 								<p class="about-text">
-								  <strong>Hello Im Oscar Barajas<strong> a versatile and detail-oriented Test Engineer with a strong specialization in software regression testing, system validation, and static testing for embedded and electromechanical systems. Experienced in developing and executing rigorous test plans to ensure reliability, safety, and performance of mission-critical control systems. Proven ability to identify, isolate, and resolve complex issues across hardware and software layers in real-world environments.
+								  <strong>Hello, I’m Oscar Barajas</strong> — a versatile and detail-oriented Test Engineer with a strong specialization in software regression testing, system validation, and static testing for embedded and electromechanical systems. Experienced in developing and executing rigorous test plans to ensure reliability, safety, and performance of mission-critical control systems. Proven ability to identify, isolate, and resolve complex issues across hardware and software layers in real-world environments.
 Currently supporting large-scale transportation systems at Siemens Mobility, where I lead testing efforts across vehicle control, braking, and network systems. Skilled in debugging embedded firmware, analyzing system behavior, and validating integration across microcontrollers, sensors, and communication protocols. Passionate about building robust, fault-tolerant 
 systems through methodical test coverage, data-driven insights, and continuous improvement.
 								</p>
@@ -1055,7 +1120,7 @@ systems through methodical test coverage, data-driven insights, and continuous i
 								</p>
 								<p class="about-text">
 									As a <strong>Field Test Engineer at Siemens Mobility</strong>, I specialize in 
-									<span class="highlight">hardware troubleshooting, system validation,software regressiong testing, static testing and fault diagnosis</span> 
+									<span class="highlight">hardware troubleshooting, system validation,software regression testing, static testing and fault diagnosis</span> 
 									for railway control systems, ensuring high reliability and efficiency in critical transportation infrastructure. 
 									
 								</p>
@@ -1063,7 +1128,20 @@ systems through methodical test coverage, data-driven insights, and continuous i
 							
 									
 								</ul>
-							</section> 
+							</section>
+
+						<!-- Contact -->
+							<section id="contact" class="blurb">
+								<h2>Contact</h2>
+								<p class="about-text">
+									Open to opportunities in ASIC/VLSI design, hardware validation and embedded systems.
+								</p>
+								<ul class="actions stacked">
+									<li><a href="mailto:obarajas415@gmail.com" class="button fit">Email Me</a></li>
+									<li><a href="https://github.com/obarajas415" class="button fit">GitHub</a></li>
+								</ul>
+							</section>
+
 						<!-- Mini Posts -->
 							<section>
 								<div class="mini-posts">
@@ -1086,12 +1164,12 @@ systems through methodical test coverage, data-driven insights, and continuous i
 										<header>
 											<h3 class="full-width">Master of Science in Electrical and Computer Engineering</h3>
 											<h4>San Francisco State University</h4>
-											<p>Spring 2023 - Fall 2025</p>
+											<p>Spring 2023 - Spring 2026</p>
 										</header>
 										<div class="image"><img src="sfsulogo.JPG" alt="SFSU Logo" /></div>
 									</article>
 
-									
+								</div>
 							</section>
 
 					</section>
